@@ -9,7 +9,7 @@ public class AddTwoNumbers extends SingleTestCase {
     int y = 1;
 
     @Override
-    protected void test() {
+    public void test() {
         assertEquals(2, x+y);
     }
 
