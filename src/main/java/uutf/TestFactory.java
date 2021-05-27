@@ -3,9 +3,9 @@ package uutf;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class TestFactory {
+public abstract class TestFactory {
 
-    private static final String METHOD_PREFIX = "test_";
+
 
     public Test scan(Class klass){
         if(! isATestCase(klass))
@@ -16,7 +16,7 @@ public class TestFactory {
     private Test extractTestCases(Class klass) {
         TestSuite suite = new TestSuite();
         for(Method m: klass.getMethods()){
-            if(m.getName().startsWith(METHOD_PREFIX)){
+            if(isATestMethod(m)){
                 try {
                     buildTestCase(klass, m, suite);
                 } catch (Exception e) {
@@ -27,6 +27,8 @@ public class TestFactory {
         }
         return suite;
     }
+
+    protected abstract boolean isATestMethod(Method m);
 
     private void buildTestCase(Class klass, Method m, TestSuite suite)
             throws NoSuchMethodException, IllegalAccessException,
