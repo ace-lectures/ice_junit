@@ -1,5 +1,6 @@
 import tests.AddTwoNumbers;
 import tests.IntegerTests;
+import uutf.TestFactory;
 import uutf.TestRunner;
 
 public class Main {
@@ -9,7 +10,8 @@ public class Main {
 
         System.out.println("Demo Junit");
         TestRunner runner = new TestRunner();
-        runner.runAndPrint(IntegerTests.build());
+        TestFactory scanner = new TestFactory();
+        runner.runAndPrint(scanner.scan(IntegerTests.class));
 
         System.out.println("Retrocompatibilité");
         runner = new TestRunner();
