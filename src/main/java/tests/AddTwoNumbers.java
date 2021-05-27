@@ -8,7 +8,7 @@ public class AddTwoNumbers extends TestCase {
 
     @Override
     protected void test() {
-        assertEquals(2, x+y);
+        assertEquals(42, x+y);
     }
 
 }
