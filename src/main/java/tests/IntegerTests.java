@@ -5,49 +5,25 @@ import uutf.TestSuite;
 
 import static uutf.Assertions.assertEquals;
 
-public class IntegerTests extends TestSuite {
+public class IntegerTests extends TestCase {
 
-    public IntegerTests() {
-        this.addCase(new AddTwoNumbers());
-        this.addCase(new SubtractTwoNumbers());
-        this.addCase(new ThrowAnException());
+    private int x, y = 0;
+    @Override protected void setUp() { x = 1; y = 1; }
+
+    public void addTwoNumbers() { assertEquals(42, x+y); }
+    public void subtractTwoNumbers() { assertEquals(0, x-y); }
+    public void throwAnException() { throw new RuntimeException("Boom!"); }
+
+
+    // Objectif: dégager ça
+    public static TestSuite build() {
+        TestSuite suite = new TestSuite();
+        suite.addCase(new IntegerTests().initialize("addTwoNumbers"));
+        suite.addCase(new IntegerTests().initialize("subtractTwoNumbers"));
+        suite.addCase(new IntegerTests().initialize("throwAnException"));
+        return suite;
     }
 
-    private static class AddTwoNumbers extends TestCase {
-        private int x, y = 0;
 
-        @Override
-        protected void setUp() { x = 1; y = 1; }
-
-        @Override
-        protected void test() {
-            assertEquals(42, x+y);
-        }
-
-    }
-
-    private static class SubtractTwoNumbers extends TestCase {
-        private int x, y = 0;
-
-        @Override
-        protected void setUp() { x = 1; y = 1; }
-
-        @Override
-        protected void test() {
-            assertEquals(0, x-y);
-        }
-
-    }
-
-    private static class ThrowAnException extends TestCase {
-        int x = 1;
-        int y = 1;
-
-        @Override
-        protected void test() {
-            throw new RuntimeException("Boom!");
-        }
-
-    }
 
 }
