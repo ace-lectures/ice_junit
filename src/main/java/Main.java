@@ -1,9 +1,5 @@
-import tests.AddTwoNumbers;
-import tests.SubtractTwoNumbers;
-import tests.ThrowAnException;
+import tests.IntegerTests;
 import uutf.TestRunner;
-
-import static uutf.Assertions.*;
 
 public class Main {
 
@@ -12,11 +8,8 @@ public class Main {
         System.out.println("Demo Junit");
         TestRunner runner = new TestRunner();
 
-        runner.addCase(new AddTwoNumbers()); // Command
-        runner.addCase(new SubtractTwoNumbers());
-        runner.addCase(new ThrowAnException());
+        runner.runAndPrint(new IntegerTests());
 
-        runner.run();
     }
 
 }
